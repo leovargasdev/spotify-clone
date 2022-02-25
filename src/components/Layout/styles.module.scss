@@ -1,0 +1,34 @@
+.container {
+  width: 100%;
+  height: 100vh;
+
+  display: grid;
+  grid-template-areas: 
+    'navigation head'
+    'navigation main'
+    'footer footer';
+  background: blue;
+
+  grid-template-rows: 64px 1fr 91px;
+  grid-template-columns: 251px 1fr;
+
+  nav {
+    grid-area: navigation;
+    background: crimson;
+  }
+
+  header {
+    grid-area: head;
+    background: plum;
+  }
+
+  main {
+    grid-area: main;
+    background: sienna;
+  }
+
+  footer {
+    grid-area: footer;
+    background: forestgreen;
+  }
+}
