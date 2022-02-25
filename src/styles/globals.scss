@@ -21,6 +21,8 @@ html {
   --secondary: #b3b3b3;
   --terciary: #181818;
 
+  --border: #282828;
+
 
   --black: #000000;
   --green: #3bd760;
@@ -47,3 +49,27 @@ button {
     cursor: pointer;
   }
 }
+
+.scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+  
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+  /* Track */
+  &::-webkit-scrollbar-tracke {
+    background: transparent;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.35);
+    transition: all 0.4s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+

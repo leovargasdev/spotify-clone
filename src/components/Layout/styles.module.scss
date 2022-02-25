@@ -10,11 +10,10 @@
   background: blue;
 
   grid-template-rows: 64px 1fr 91px;
-  grid-template-columns: 251px 1fr;
+  grid-template-columns: 233px 1fr;
 
   nav {
     grid-area: navigation;
-    background: crimson;
   }
 
   header {

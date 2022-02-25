@@ -1,3 +1,4 @@
+import { NavBar } from 'components/Navbar'
 import styles from './styles.module.scss'
 
 type LayoutProps = {
@@ -6,7 +7,7 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => (
   <div className={styles.container}>
-    <nav>menu</nav>
+    <NavBar />
     <header>cabeçalho</header>
     <main>
       <h1>Layout</h1>
