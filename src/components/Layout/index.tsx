@@ -38,11 +38,7 @@ export const Layout = ({ children }: LayoutProps) => {
       <NavBar />
       <main className="scroll" id="main-content">
         <Header />
-        <div className={styles.content}>
-          <h1>dasdas</h1>
-          <h1>sdoja</h1>
-          {children}
-        </div>
+        <div className={styles.content}>{children}</div>
       </main>
       <footer>rodape</footer>
     </div>
