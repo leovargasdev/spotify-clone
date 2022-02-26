@@ -1,11 +1,11 @@
 .container {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 233px;
+  left: 0;
 
-  width: calc(100vw - 248px);
-  height: 64px;
-  padding: 0 32px;
+  width: 100%;
+  height: auto;
+  padding: 16px 16px 16px 32px;
 
   display: flex;
   align-items: center;

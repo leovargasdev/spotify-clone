@@ -22,7 +22,9 @@ export const Layout = ({ children }: LayoutProps) => {
       let opacity = Math.ceil((currentScroll * 100) / MAX_SCROLL)
       opacity = Math.min(100, opacity) / 100
 
-      mainHeader.style.backgroundColor = `rgba(80, 40, 240, ${opacity})`
+      mainHeader.style.backgroundColor = `rgba(32, 16, 96, ${opacity})`
+
+      mainContent.style.setProperty('--opacity', String(1 - opacity))
     }
 
     const scrollMainContent = document.getElementById('main-content')
@@ -34,32 +36,10 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <div className={styles.container}>
       <NavBar />
-      <main className={styles['active--scroll']} id="main-content">
+      <main className="scroll" id="main-content">
         <Header />
         <div className={styles.content}>
           <h1>dasdas</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
-          <h1>sdoja</h1>
           <h1>sdoja</h1>
           {children}
         </div>

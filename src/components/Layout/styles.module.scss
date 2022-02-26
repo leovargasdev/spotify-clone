@@ -37,7 +37,7 @@
       position: fixed;
       top: 0;
       left: 233px;
-
+      opacity: var(--opacity);
       z-index: -1;
       width: calc(100vw - 233px);
       height: 332px;
@@ -45,9 +45,6 @@
       background-image: linear-gradient(rgba(0,0,0,.6) 0,#121212 100%),var(--background-noise);
     }
 
-    // &.active--scroll:before {
-    //   background: none;
-    // }
   }
 
   footer {
