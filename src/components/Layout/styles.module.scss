@@ -4,10 +4,10 @@
 
   display: grid;
   grid-template-areas: 
-    'navigation head'
+    'navigation main'
     'navigation main'
     'footer footer';
-  background: blue;
+  // background: blue;
 
   grid-template-rows: 64px 1fr 91px;
   grid-template-columns: 233px 1fr;
@@ -16,14 +16,33 @@
     grid-area: navigation;
   }
 
-  header {
-    grid-area: head;
-    background: plum;
-  }
-
   main {
     grid-area: main;
-    background: sienna;
+    
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    position: relative;
+
+    .content {
+      flex: 1;
+      padding: 88px 32px 0;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      z-index: -1;
+      width: 100%;
+      height: 332px;
+      background: var(--background-header);
+    }
   }
 
   footer {

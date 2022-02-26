@@ -16,6 +16,7 @@ html {
 
 :root {
   --background: #121212;
+  --background-header: linear-gradient(-180deg, rgba(32,17,95,1) 0%, rgba(17,17,18,1) 100%);
 
   --primary: #fff;
   --secondary: #b3b3b3;
@@ -23,9 +24,9 @@ html {
 
   --border: #282828;
 
-
   --black: #000000;
   --green: #3bd760;
+
 }
 
 body {

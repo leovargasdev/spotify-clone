@@ -1,3 +1,4 @@
+import { Header } from 'components/Header'
 import { NavBar } from 'components/Navbar'
 import styles from './styles.module.scss'
 
@@ -8,10 +9,15 @@ type LayoutProps = {
 export const Layout = ({ children }: LayoutProps) => (
   <div className={styles.container}>
     <NavBar />
-    <header>cabeçalho</header>
     <main>
-      <h1>Layout</h1>
-      {children}
+      <Header />
+      <div className={styles.content}>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        {children}
+      </div>
     </main>
     <footer>rodape</footer>
   </div>
