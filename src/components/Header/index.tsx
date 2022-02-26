@@ -3,7 +3,7 @@ import { FaChevronLeft, FaChevronRight, FaCaretDown } from 'react-icons/fa'
 import styles from './styles.module.scss'
 
 export const Header = () => (
-  <header className={styles.container}>
+  <header className={styles.container} id="main-header">
     <div className={styles.controll}>
       <button type="button" onClick={() => console.log('click')}>
         <FaChevronLeft />

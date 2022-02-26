@@ -34,22 +34,20 @@
 
     &::before {
       content: '';
-      position: absolute;
+      position: fixed;
       top: 0;
-      left: 0;
+      left: 233px;
 
       z-index: -1;
-      width: 100%;
+      width: calc(100vw - 233px);
       height: 332px;
       background-color: rgb(80, 40, 240);
       background-image: linear-gradient(rgba(0,0,0,.6) 0,#121212 100%),var(--background-noise);
-      // background: var(--background-header);
     }
 
-    &.active--scroll:before {
-      height: 64px;
-      background-image: none;
-    }
+    // &.active--scroll:before {
+    //   background: none;
+    // }
   }
 
   footer {
