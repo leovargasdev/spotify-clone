@@ -9,9 +9,29 @@ type LayoutProps = {
 export const Layout = ({ children }: LayoutProps) => (
   <div className={styles.container}>
     <NavBar />
-    <main>
+    <main className={styles['active--scroll']}>
       <Header />
       <div className={styles.content}>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
+        <h1>sdoja</h1>
         <h1>sdoja</h1>
         <h1>sdoja</h1>
         <h1>sdoja</h1>
