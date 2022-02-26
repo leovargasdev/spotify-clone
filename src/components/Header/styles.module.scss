@@ -31,6 +31,10 @@
 
       margin: auto;
     }
+
+    &:disabled {
+      opacity: 0.4;
+    }
   }
 }
 

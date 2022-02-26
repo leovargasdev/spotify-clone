@@ -1,7 +1,9 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { FaCaretDown } from 'react-icons/fa'
 import { RiExternalLinkFill } from 'react-icons/ri'
-import { FaChevronLeft, FaChevronRight, FaCaretDown } from 'react-icons/fa'
+import { BsChevronRight, BsChevronLeft } from 'react-icons/bs'
 
 import styles from './styles.module.scss'
 
@@ -12,16 +14,21 @@ const NAVIGATION = [
 ]
 
 export const Header = () => {
+  const router = useRouter()
   const [isActive, setIsActive] = useState<boolean>(false)
 
   return (
     <header className={styles.container} id="main-header">
       <div className={styles.controll}>
-        <button type="button" onClick={() => console.log('click')}>
-          <FaChevronLeft />
+        <button
+          type="button"
+          onClick={() => console.log('click')}
+          disabled={router.pathname === '/'}
+        >
+          <BsChevronLeft />
         </button>
         <button type="button" onClick={() => console.log('click')}>
-          <FaChevronRight />
+          <BsChevronRight />
         </button>
       </div>
       <div className={styles.profile}>
