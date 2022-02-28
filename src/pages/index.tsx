@@ -1,17 +1,11 @@
 import Head from 'next/head'
-import { FaPlay, FaPause } from 'react-icons/fa'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { FaPlay, FaPause } from 'react-icons/fa'
 
+import { MOCK_PLAYLISTS, MOCK_CARDS, MOCK_SECTIONS } from 'mock'
 import styles from 'styles/home.module.scss'
-
-const MOCK_CARDS = [
-  'Músicas Curtidas',
-  'Concentration',
-  'Twitch',
-  'Mix de Imagine Dragons',
-  'Mix rock',
-  'Caneca de Mamicas 43 - Tá na hora de lembrar Caneca de Mamicas 43 - Tá na hora de lembrar Caneca de Mamicas 43 - Tá na hora de lembrar Caneca de Mamicas 43 - Tá na hora de lembrar Caneca de Mamicas 43 - Tá na hora de lembrar'
-]
+import { PlayButton } from 'components/PlayButton'
 
 export default function HomePage() {
   const [activePlay, setActivePlay] = useState<number>(-1)
@@ -30,13 +24,14 @@ export default function HomePage() {
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <Head>
         <title>HomePage</title>
       </Head>
+
       <h1>{welcomeMessage}</h1>
 
-      <div className={styles.cards}>
+      <section className={styles.cards}>
         {MOCK_CARDS.map((card, index) => (
           <div
             key={card}
@@ -45,15 +40,73 @@ export default function HomePage() {
             }`}
           >
             <span />
-            <strong>{card}</strong>
-            <div className={styles['card--button']}>
+            <strong className="limit-text two">{card}</strong>
+
+            <PlayButton activeSound={card} />
+            {/* <div className={styles['play-button']}>
               <button type="button" onClick={() => handleActivePlay(index)}>
                 {activePlay === index ? <FaPause /> : <FaPlay />}
               </button>
-            </div>
+            </div> */}
           </div>
         ))}
-      </div>
-    </>
+      </section>
+
+      <section>
+        <div className={styles['playlist--title']}>
+          <h2>{MOCK_SECTIONS[0]}</h2>
+        </div>
+
+        <div className={styles.playlists}>
+          {MOCK_PLAYLISTS.map(playlist => (
+            <div className={styles.playlist} key={playlist.name}>
+              <div className={styles['playlist--image']}>
+                <img
+                  src="https://seed-mix-image.spotifycdn.com/v6/img/rock/4KWTAlx2RvbpseOGMEmROg/en/default"
+                  alt="Capa da Playlist"
+                />
+              </div>
+              <div className={styles['playlist--content']}>
+                <strong className="limit-text one">{playlist.name}</strong>
+                <p className="limit-text two">{playlist.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {MOCK_SECTIONS.slice(1).map(section => (
+        <section key={section}>
+          <div className={styles['playlist--title']}>
+            <h2 className={styles['playlist--title__link']}>{section}</h2>
+
+            <Link href="/">
+              <a href="">ver tudo</a>
+            </Link>
+          </div>
+
+          <div className={styles.playlists}>
+            {MOCK_PLAYLISTS.map(playlist => (
+              <div
+                key={playlist.name}
+                className={`${styles.playlist} ${styles['playlist-hover']}`}
+              >
+                <div className={styles['playlist--image']}>
+                  <img
+                    src="https://seed-mix-image.spotifycdn.com/v6/img/rock/4KWTAlx2RvbpseOGMEmROg/en/default"
+                    alt="Capa da Playlist"
+                  />
+                  <PlayButton activeSound={playlist.name} />
+                </div>
+                <div className={styles['playlist--content']}>
+                  <strong className="limit-text one">{playlist.name}</strong>
+                  <p className="limit-text two">{playlist.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
   )
 }
