@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+
+  background: var(--terciary);
+  border-top: 1px solid var(--black-light);
+}
+
+.music {
+  display: flex;
+  column-gap: 14px;
+  align-items: center;
+
+  .sound--image {
+    width: 56px;
+    height: 56px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .sound--name {
+    padding-right: 16px;
+  }
+
+  strong {
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1rem;
+  }
+
+  p {
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    color: var(--secondary);
+  }
+}
+
+.controll {
+  width: 100%;
+  max-width: 600px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 12px;
+
+  .controll-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 32px;
+
+    button {
+      border: 0;
+      background: transparent;
+    }
+
+    svg {
+      width: 24px;
+      height: auto;
+
+      color: var(--secondary);
+    }
+
+  }
+
+  .controll-timeline {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+
+    .timeline {
+      flex: 1;
+      height: 2px;
+      background: blue;
+    }
+
+    small {
+      font-size: 0.75rem;
+      line-height: 1rem;
+      color: var(--secondary--ligth);
+    }
+
+  }
+}

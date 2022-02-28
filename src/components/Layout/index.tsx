@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Header } from 'components/Header'
 import { NavBar } from 'components/Navbar'
 import styles from './styles.module.scss'
+import { Play } from 'components/Play'
 
 type LayoutProps = {
   children: React.ReactNode
@@ -40,7 +41,7 @@ export const Layout = ({ children }: LayoutProps) => {
         <Header />
         <div className={styles.content}>{children}</div>
       </main>
-      <footer>rodape</footer>
+      <Play />
     </div>
   )
 }

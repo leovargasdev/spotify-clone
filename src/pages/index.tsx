@@ -1,14 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { FaPlay, FaPause } from 'react-icons/fa'
 
 import { MOCK_PLAYLISTS, MOCK_CARDS, MOCK_SECTIONS } from 'mock'
 import styles from 'styles/home.module.scss'
 import { PlayButton } from 'components/PlayButton'
 
 export default function HomePage() {
-  const [activePlay, setActivePlay] = useState<number>(-1)
   const [welcomeMessage, setWelcomeMessage] = useState<string>('')
 
   useEffect(() => {
@@ -19,10 +17,6 @@ export default function HomePage() {
     else setWelcomeMessage('Boa noite')
   }, [])
 
-  const handleActivePlay = (cardIndex: number): void => {
-    setActivePlay(state => (state === cardIndex ? -1 : cardIndex))
-  }
-
   return (
     <div className={styles.container}>
       <Head>
@@ -32,22 +26,11 @@ export default function HomePage() {
       <h1>{welcomeMessage}</h1>
 
       <section className={styles.cards}>
-        {MOCK_CARDS.map((card, index) => (
-          <div
-            key={card}
-            className={`${styles.card} ${
-              activePlay === index ? styles.active : ''
-            }`}
-          >
+        {MOCK_CARDS.map(card => (
+          <div key={card} className={styles.card}>
             <span />
             <strong className="limit-text two">{card}</strong>
-
-            <PlayButton activeSound={card} />
-            {/* <div className={styles['play-button']}>
-              <button type="button" onClick={() => handleActivePlay(index)}>
-                {activePlay === index ? <FaPause /> : <FaPlay />}
-              </button>
-            </div> */}
+            <PlayButton />
           </div>
         ))}
       </section>
@@ -96,7 +79,7 @@ export default function HomePage() {
                     src="https://seed-mix-image.spotifycdn.com/v6/img/rock/4KWTAlx2RvbpseOGMEmROg/en/default"
                     alt="Capa da Playlist"
                   />
-                  <PlayButton activeSound={playlist.name} />
+                  <PlayButton />
                 </div>
                 <div className={styles['playlist--content']}>
                   <strong className="limit-text one">{playlist.name}</strong>
