@@ -1,15 +1,37 @@
 .container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 16px;
-
+  
   background: var(--terciary);
   border-top: 1px solid var(--black-light);
+
+  button {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+
+    svg {
+      margin: auto;
+      width: 16px;
+      height: auto;
+      
+      path {
+        fill: var(--secondary-light);
+      }
+    }
+    
+    &:hover svg path {
+      fill: var(--primary);
+    }
+  }
 }
 
 .music {
   display: flex;
-  column-gap: 14px;
+  column-gap: 0;
   align-items: center;
 
   .sound--image {
@@ -24,7 +46,8 @@
   }
 
   .sound--name {
-    padding-right: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
   }
 
   strong {
@@ -42,53 +65,85 @@
 
 .controll {
   width: 100%;
-  max-width: 600px;
-
-  margin: 0 auto;
+  max-width: 722px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 12px;
+}
 
-  .controll-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 32px;
+.controll-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 16px;
 
-    button {
-      border: 0;
-      background: transparent;
-    }
+  .button-play svg {
+    width: 32px;
+  }
+}
 
-    svg {
-      width: 24px;
-      height: auto;
+.controll-timeline {
+  width: 100%;
 
-      color: var(--secondary);
-    }
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
 
+  small {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: var(--secondary--ligth);
   }
 
-  .controll-timeline {
-    width: 100%;
+}
 
+.timeline {
+  flex: 1;
+  height: 4px;
+  border-radius: 4px;
+  background: #535353;
+
+  span {
+    position: relative;
+    display: block;
+    height: 100%;
+    border-radius: 4px;
+    background: var(--secondary);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      right: -8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      opacity: 0;
+      background: var(--primary);
+    }
+  }
+
+  &:hover span {
+    background: var(--green);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.controll-right {
+  display: flex;
+  align-items: center;
+  column-gap: 0;
+
+  .sound {
     display: flex;
     align-items: center;
-    column-gap: 8px;
-
-    .timeline {
-      flex: 1;
-      height: 2px;
-      background: blue;
-    }
-
-    small {
-      font-size: 0.75rem;
-      line-height: 1rem;
-      color: var(--secondary--ligth);
-    }
-
+    column-gap: 6px;
+    margin: 0 6px;
+    width: 116px;
   }
 }

@@ -44,10 +44,7 @@ export default function HomePage() {
           {MOCK_PLAYLISTS.map(playlist => (
             <div className={styles.playlist} key={playlist.name}>
               <div className={styles['playlist--image']}>
-                <img
-                  src="https://seed-mix-image.spotifycdn.com/v6/img/rock/4KWTAlx2RvbpseOGMEmROg/en/default"
-                  alt="Capa da Playlist"
-                />
+                <img src={playlist.image} alt="Capa da Playlist" />
               </div>
               <div className={styles['playlist--content']}>
                 <strong className="limit-text one">{playlist.name}</strong>

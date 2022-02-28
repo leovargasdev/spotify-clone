@@ -1,18 +1,46 @@
-import { FaRedRiver } from 'react-icons/fa'
-import {
-  BsFillSkipEndFill,
-  BsFillSkipStartFill,
-  BsPlayCircleFill,
-  BsPauseCircleFill,
-  BsFillHeartFill
-} from 'react-icons/bs'
-import { BiRepeat } from 'react-icons/bi'
+import { useEffect, useState } from 'react'
+import { BsPlayCircleFill, BsPauseCircleFill } from 'react-icons/bs'
 
 import styles from './styles.module.scss'
-import { useState } from 'react'
+import {
+  IconConnectDevice,
+  IconExpand,
+  IconHeart,
+  IconList,
+  IconLoop,
+  IconMicrophone,
+  IconRepeat,
+  IconSkipEnd,
+  IconSkipStart,
+  IconSound,
+  IconTray
+} from 'static'
+
+const TIME_SOUND_MOCK = 60 * 3 + 28
 
 export const Play = () => {
   const [active, setActive] = useState<boolean>(false)
+  const [timeline, setTimeLine] = useState<number>(0)
+
+  const [time, setTime] = useState<string>('00:00')
+
+  useEffect(() => {
+    if (active && timeline < TIME_SOUND_MOCK) {
+      setTimeout(() => {
+        setTimeLine(state => {
+          const minutes = Math.floor(state / 60)
+            .toString()
+            .padStart(2, '0')
+          const seconds = Math.floor(state % 60)
+            .toString()
+            .padStart(2, '0')
+
+          setTime(`${minutes}:${seconds}`)
+          return state + 1
+        })
+      }, 1000)
+    }
+  }, [timeline, active])
 
   return (
     <footer className={styles.container}>
@@ -27,35 +55,64 @@ export const Play = () => {
           <strong>Dont Stop Believin</strong>
           <p>Journey</p>
         </div>
-        <BsFillHeartFill />
-        <FaRedRiver />
+        <button type="button">
+          <IconHeart />
+        </button>
+        <button type="button">
+          <IconTray />
+        </button>
       </div>
 
       <div className={styles.controll}>
         <div className={styles['controll-buttons']}>
           <button type="button">
-            <BiRepeat />
+            <IconRepeat />
           </button>
           <button type="button">
-            <BsFillSkipStartFill />
+            <IconSkipStart />
           </button>
-          <button type="button" onClick={() => setActive(state => !state)}>
+          <button
+            type="button"
+            className={styles['button-play']}
+            onClick={() => setActive(state => !state)}
+          >
             {active ? <BsPauseCircleFill /> : <BsPlayCircleFill />}
           </button>
           <button type="button">
-            <BsFillSkipEndFill />
+            <IconSkipEnd />
           </button>
           <button type="button">
-            <BiRepeat />
+            <IconLoop />
           </button>
         </div>
         <div className={styles['controll-timeline']}>
-          <small>1:20</small>
+          <small>{time}</small>
           <div className={styles.timeline}>
-            <span />
+            <span style={{ width: `${(timeline * 100) / TIME_SOUND_MOCK}%` }} />
           </div>
-          <small>3:32</small>
+          <small>3:28</small>
         </div>
+      </div>
+
+      <div className={styles['controll-right']}>
+        <button type="button">
+          <IconMicrophone />
+        </button>
+        <button type="button">
+          <IconList />
+        </button>
+        <button type="button">
+          <IconConnectDevice />
+        </button>
+        <div className={styles.sound}>
+          <IconSound />
+          <div className={styles.timeline}>
+            <span style={{ width: '30%' }} />
+          </div>
+        </div>
+        <button type="button">
+          <IconExpand />
+        </button>
       </div>
     </footer>
   )
