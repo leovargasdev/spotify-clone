@@ -1,0 +1,36 @@
+.container {
+  width: 48px;
+  height: 100%;
+  display: flex;
+
+  button {
+    display: flex;
+
+    font-size: 1rem;
+    line-height: 1.5rem;
+
+    width: 48px;
+    height: 48px;
+    margin: auto;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 8px 8px rgb(0 0 0 / 30%);
+
+    opacity: 0;
+
+    transition: all 0.4s;
+
+    svg {
+      color: var(--black);
+      margin: auto;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &.active button {
+    opacity: 1;
+  }
+}
