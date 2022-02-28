@@ -1,14 +1,8 @@
-import {
-  MdHome,
-  MdSearch,
-  MdLibraryBooks,
-  MdAdd,
-  MdPlaylistPlay,
-  MdFavorite
-} from 'react-icons/md'
 import Link from 'next/link'
+import { MdAdd, MdFavorite } from 'react-icons/md'
 
 import styles from './styles.module.scss'
+import { IconEpisode, IconHome, IconLibrary, IconSearch } from 'static'
 
 const PLAYLISTS = [
   'Minha playlist nº 15',
@@ -40,7 +34,7 @@ export const NavBar = () => (
         <li>
           <Link href="/">
             <a href="">
-              <MdHome />
+              <IconHome />
               Início
             </a>
           </Link>
@@ -48,7 +42,7 @@ export const NavBar = () => (
         <li>
           <Link href="/">
             <a href="">
-              <MdSearch />
+              <IconSearch />
               Buscar
             </a>
           </Link>
@@ -56,7 +50,7 @@ export const NavBar = () => (
         <li>
           <Link href="/">
             <a href="">
-              <MdLibraryBooks />
+              <IconLibrary />
               Sua Biblioteca
             </a>
           </Link>
@@ -87,7 +81,7 @@ export const NavBar = () => (
           <Link href="/">
             <a href="">
               <span className={`${styles['icon-background']} ${styles.green}`}>
-                <MdPlaylistPlay />
+                <IconEpisode />
               </span>
               Seus episódios
             </a>
@@ -103,7 +97,9 @@ export const NavBar = () => (
     <div className={'scroll '.concat(styles.playlists)}>
       <ul>
         {PLAYLISTS.map(playlist => (
-          <li key={playlist}>{playlist}</li>
+          <li key={playlist} className="limit-text one">
+            {playlist}
+          </li>
         ))}
       </ul>
     </div>

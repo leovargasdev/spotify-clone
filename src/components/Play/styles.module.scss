@@ -26,6 +26,10 @@
     &:hover svg path {
       fill: var(--primary);
     }
+
+    &.like svg path {
+      fill: var(--green);
+    }
   }
 }
 
@@ -143,7 +147,6 @@
     display: flex;
     align-items: center;
     column-gap: 6px;
-    margin: 0 6px;
     width: 116px;
   }
 }

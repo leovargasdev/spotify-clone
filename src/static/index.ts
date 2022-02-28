@@ -2,6 +2,7 @@ import IconConnectDevice from './icons/connect-device.svg'
 import IconEpisode from './icons/episode.svg'
 import IconExpand from './icons/expand.svg'
 import IconHeart from './icons/heart.svg'
+import IconHeartSolid from './icons/heart-solid.svg'
 import IconHome from './icons/home.svg'
 import IconLibrary from './icons/library.svg'
 import IconList from './icons/list.svg'
@@ -19,6 +20,7 @@ export {
   IconEpisode,
   IconExpand,
   IconHeart,
+  IconHeartSolid,
   IconHome,
   IconLibrary,
   IconList,

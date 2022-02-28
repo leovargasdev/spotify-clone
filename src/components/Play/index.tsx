@@ -6,6 +6,7 @@ import {
   IconConnectDevice,
   IconExpand,
   IconHeart,
+  IconHeartSolid,
   IconList,
   IconLoop,
   IconMicrophone,
@@ -19,6 +20,8 @@ import {
 const TIME_SOUND_MOCK = 60 * 3 + 28
 
 export const Play = () => {
+  const [isLike, setIsLike] = useState<boolean>(false)
+
   const [active, setActive] = useState<boolean>(false)
   const [timeline, setTimeLine] = useState<number>(0)
 
@@ -55,8 +58,12 @@ export const Play = () => {
           <strong>Dont Stop Believin</strong>
           <p>Journey</p>
         </div>
-        <button type="button">
-          <IconHeart />
+        <button
+          type="button"
+          className={isLike ? styles.like : ''}
+          onClick={() => setIsLike(state => !state)}
+        >
+          {isLike ? <IconHeartSolid /> : <IconHeart />}
         </button>
         <button type="button">
           <IconTray />
@@ -105,7 +112,9 @@ export const Play = () => {
           <IconConnectDevice />
         </button>
         <div className={styles.sound}>
-          <IconSound />
+          <button type="button">
+            <IconSound />
+          </button>
           <div className={styles.timeline}>
             <span style={{ width: '30%' }} />
           </div>
