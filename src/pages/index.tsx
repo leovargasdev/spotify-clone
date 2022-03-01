@@ -1,17 +1,18 @@
 import Head from 'next/head'
 import Link from 'next/link'
+// import { GetStaticProps } from 'next'
 import { useEffect, useState } from 'react'
 
-import { MOCK_PLAYLISTS, MOCK_CARDS, MOCK_SECTIONS } from 'mock'
-import styles from 'styles/home.module.scss'
 import { PlayButton } from 'components/PlayButton'
+import { MOCK_PLAYLISTS, MOCK_CARDS, MOCK_SECTIONS } from 'mock'
 
-export default function HomePage() {
+import styles from 'styles/home.module.scss'
+
+function HomePage() {
   const [welcomeMessage, setWelcomeMessage] = useState<string>('')
 
   useEffect(() => {
     const currentHour = new Date().getHours()
-    console.log(currentHour)
     if (currentHour < 12) setWelcomeMessage('Bom dia')
     else if (currentHour < 18) setWelcomeMessage('Boa tarde')
     else setWelcomeMessage('Boa noite')
@@ -90,3 +91,16 @@ export default function HomePage() {
     </div>
   )
 }
+
+// export const getStaticProps: GetStaticProps = async () => {
+//   try {
+//     const playlists = await getPlaylists({ limit: 9, offset: 0 })
+
+//     return { props: { playlists } }
+//   } catch (e) {
+//     console.log('[ERROR] HomePage:', e)
+//     return { props: { playlists: [] } }
+//   }
+// }
+
+export default HomePage
