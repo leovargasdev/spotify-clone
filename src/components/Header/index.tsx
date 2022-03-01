@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaCaretDown } from 'react-icons/fa'
 import { RiExternalLinkFill } from 'react-icons/ri'
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs'
+
+import { User } from 'types/user'
+import { api } from 'service/api'
 
 import styles from './styles.module.scss'
 
@@ -15,7 +18,21 @@ const NAVIGATION = [
 
 export const Header = () => {
   const router = useRouter()
+  const [user, setUser] = useState<User>({ name: '', avatar_url: '' })
   const [isActive, setIsActive] = useState<boolean>(false)
+
+  useEffect(() => {
+    async function loadProfile() {
+      const { data } = await api.get('me')
+
+      setUser({
+        name: data.display_name,
+        avatar_url: data.images[0].url
+      })
+    }
+
+    loadProfile()
+  }, [])
 
   return (
     <header className={styles.container} id="main-header">
@@ -39,9 +56,9 @@ export const Header = () => {
           onClick={() => setIsActive(state => !state)}
         >
           <div className={styles['profile--info__image']}>
-            <img src="https://avatars.githubusercontent.com/u/11177716?v=4" />
+            <img src={user.avatar_url} />
           </div>
-          <strong>Leonardo Vargas</strong>
+          <strong>{user.name}</strong>
 
           <FaCaretDown />
         </div>

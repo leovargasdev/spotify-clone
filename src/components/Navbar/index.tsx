@@ -4,17 +4,17 @@ import { MdAdd, MdFavorite } from 'react-icons/md'
 import { IconEpisode, IconHome, IconLibrary, IconSearch } from 'static'
 
 import { api } from 'service/api'
+import { Playlist } from 'types/playlist'
 import styles from './styles.module.scss'
 
 export const NavBar = () => {
-  const [playlists, setPlaylists] = useState([])
+  const [playlists, setPlaylists] = useState<Playlist[]>([])
 
   useEffect(() => {
     async function loadPlaylists() {
       const response = await api.get('playlists', {
         params: { limit: 20, offset: 0 }
       })
-      console.log(response.data)
       setPlaylists(response.data.items)
     }
 
