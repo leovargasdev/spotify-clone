@@ -65,8 +65,21 @@
   }
 }
 
-.controll a {
-  padding: 8px 24px;
+.controll {
+  a {
+    padding: 8px 24px;
+  }
+
+  li:nth-child(1) a span {
+    color: var(--black);
+    background: var(--primary);
+  }
+  li:nth-child(2) a span {
+    background: linear-gradient(135deg,#450af5,#c4efd9);
+  }
+  li:nth-child(3) a span {
+    background: #006450;
+  }
 }
 
 .divider {
@@ -89,19 +102,6 @@
     width: 0.875rem;
     height: auto;
     margin: auto;
-  }
-
-  &.white {
-    color: var(--black);
-    background: var(--primary);
-  }
-
-  &.linear {
-    background: linear-gradient(135deg,#450af5,#c4efd9);
-  }
-
-  &.green {
-    background: #006450;
   }
 }
 

@@ -5,7 +5,27 @@ import { IconEpisode, IconHome, IconLibrary, IconSearch } from 'static'
 
 import { api } from 'service/api'
 import { Playlist } from 'types/playlist'
+import { Navigation } from 'types/navigation'
 import styles from './styles.module.scss'
+
+const NAVIGATIONS: Navigation[] = [
+  {
+    class: 'links',
+    items: [
+      { name: 'Início', url: '/', icon: <IconHome /> },
+      { name: 'Buscar', url: '/', icon: <IconSearch /> },
+      { name: 'Sua Biblioteca', url: '/', icon: <IconLibrary /> }
+    ]
+  },
+  {
+    class: 'controll',
+    items: [
+      { name: 'Criar playlist', url: '/', icon: <MdAdd /> },
+      { name: 'Músicas Curtidas', url: '/', icon: <MdFavorite /> },
+      { name: 'Seus episódios', url: '/', icon: <IconEpisode /> }
+    ]
+  }
+]
 
 export const NavBar = () => {
   const [playlists, setPlaylists] = useState<Playlist[]>([])
@@ -25,70 +45,26 @@ export const NavBar = () => {
     <nav className={styles.container}>
       <img src="logo.png" alt="" />
       <div className={styles.navigation}>
-        <ul className={styles.links}>
-          <li>
-            <Link href="/">
-              <a href="">
-                <IconHome />
-                Início
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <a href="">
-                <IconSearch />
-                Buscar
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <a href="">
-                <IconLibrary />
-                Sua Biblioteca
-              </a>
-            </Link>
-          </li>
-        </ul>
-        <ul className={styles.controll}>
-          <li>
-            <Link href="/">
-              <a href="">
-                <span
-                  className={`${styles['icon-background']} ${styles.white}`}
-                >
-                  <MdAdd />
-                </span>
-                Criar playlist
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <a href="">
-                <span
-                  className={`${styles['icon-background']} ${styles.linear}`}
-                >
-                  <MdFavorite />
-                </span>
-                Músicas Curtidas
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <a href="">
-                <span
-                  className={`${styles['icon-background']} ${styles.green}`}
-                >
-                  <IconEpisode />
-                </span>
-                Seus episódios
-              </a>
-            </Link>
-          </li>
-        </ul>
+        {NAVIGATIONS.map(navigation => (
+          <ul className={styles[navigation.class]} key={navigation.class}>
+            {navigation.items.map(navItem => (
+              <li key={navItem.name}>
+                <Link href={navItem.url}>
+                  <a>
+                    {navigation.class === 'controll' ? (
+                      <span className={styles['icon-background']}>
+                        {navItem.icon}
+                      </span>
+                    ) : (
+                      navItem.icon
+                    )}
+                    {navItem.name}
+                  </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ))}
       </div>
 
       <div className={styles.divider}>
