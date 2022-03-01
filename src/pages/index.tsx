@@ -1,14 +1,15 @@
 import Head from 'next/head'
-import Link from 'next/link'
-// import { GetStaticProps } from 'next'
+import { GetStaticProps } from 'next'
 import { useEffect, useState } from 'react'
 
 import { PlayButton } from 'components/PlayButton'
+import { SectionAlbum } from 'components/SectionAlbum'
 import { MOCK_PLAYLISTS, MOCK_CARDS, MOCK_SECTIONS } from 'mock'
 
 import styles from 'styles/home.module.scss'
+import { spotify } from 'service/spotify'
 
-function HomePage() {
+function HomePage({ album }) {
   const [welcomeMessage, setWelcomeMessage] = useState<string>('')
 
   useEffect(() => {
@@ -56,7 +57,9 @@ function HomePage() {
         </div>
       </section>
 
-      {MOCK_SECTIONS.slice(1).map(section => (
+      <SectionAlbum {...album} />
+
+      {/* {MOCK_SECTIONS.slice(1).map(section => (
         <section key={section}>
           <div className={styles['playlist--title']}>
             <h2 className={styles['playlist--title__link']}>{section}</h2>
@@ -87,20 +90,33 @@ function HomePage() {
             ))}
           </div>
         </section>
-      ))}
+      ))} */}
     </div>
   )
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   try {
-//     const playlists = await getPlaylists({ limit: 9, offset: 0 })
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    const { data } = await spotify.get('browse/featured-playlists', {
+      params: { limit: 8, offset: 0, locale: 'pt_BR' }
+    })
 
-//     return { props: { playlists } }
-//   } catch (e) {
-//     console.log('[ERROR] HomePage:', e)
-//     return { props: { playlists: [] } }
-//   }
-// }
+    const album = {
+      name: data.message,
+      playlists: data.playlists.items.map(item => ({
+        id: item.id,
+        name: item.name,
+        href: item.href,
+        description: item.description,
+        image: item.images[0].url
+      }))
+    }
+
+    return { props: { album } }
+  } catch (e) {
+    console.log('[ERROR] HomePage:', e)
+    return { props: { album: {} } }
+  }
+}
 
 export default HomePage
