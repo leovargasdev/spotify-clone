@@ -6,17 +6,27 @@ import { PlayButton } from 'components/PlayButton'
 import { SectionAlbum } from 'components/SectionAlbum'
 import { MOCK_PLAYLISTS, MOCK_CARDS, MOCK_SECTIONS } from 'mock'
 
-import styles from 'styles/home.module.scss'
+import { api } from 'service/api'
 import { spotify } from 'service/spotify'
 
-function HomePage({ album }) {
+import styles from 'styles/home.module.scss'
+
+function HomePage({ featuredPlaylists }) {
+  const [albuns, setAlbuns] = useState([])
   const [welcomeMessage, setWelcomeMessage] = useState<string>('')
 
   useEffect(() => {
+    async function loadData() {
+      const response = await api.get('home-data')
+      setAlbuns(response.data)
+    }
+
     const currentHour = new Date().getHours()
     if (currentHour < 12) setWelcomeMessage('Bom dia')
     else if (currentHour < 18) setWelcomeMessage('Boa tarde')
     else setWelcomeMessage('Boa noite')
+
+    loadData()
   }, [])
 
   return (
@@ -57,40 +67,11 @@ function HomePage({ album }) {
         </div>
       </section>
 
-      <SectionAlbum {...album} />
+      <SectionAlbum {...featuredPlaylists} />
 
-      {/* {MOCK_SECTIONS.slice(1).map(section => (
-        <section key={section}>
-          <div className={styles['playlist--title']}>
-            <h2 className={styles['playlist--title__link']}>{section}</h2>
-
-            <Link href="/">
-              <a href="">ver tudo</a>
-            </Link>
-          </div>
-
-          <div className={styles.playlists}>
-            {MOCK_PLAYLISTS.map(playlist => (
-              <div
-                key={playlist.name}
-                className={`${styles.playlist} ${styles['playlist-hover']}`}
-              >
-                <div className={styles['playlist--image']}>
-                  <img
-                    src="https://seed-mix-image.spotifycdn.com/v6/img/rock/4KWTAlx2RvbpseOGMEmROg/en/default"
-                    alt="Capa da Playlist"
-                  />
-                  <PlayButton />
-                </div>
-                <div className={styles['playlist--content']}>
-                  <strong className="limit-text one">{playlist.name}</strong>
-                  <p className="limit-text two">{playlist.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      ))} */}
+      {albuns.map(album => (
+        <SectionAlbum {...album} key={album.name} />
+      ))}
     </div>
   )
 }
@@ -101,7 +82,7 @@ export const getStaticProps: GetStaticProps = async () => {
       params: { limit: 8, offset: 0, locale: 'pt_BR' }
     })
 
-    const album = {
+    const featuredPlaylists = {
       name: data.message,
       playlists: data.playlists.items.map(item => ({
         id: item.id,
@@ -112,10 +93,10 @@ export const getStaticProps: GetStaticProps = async () => {
       }))
     }
 
-    return { props: { album } }
+    return { props: { featuredPlaylists } }
   } catch (e) {
     console.log('[ERROR] HomePage:', e)
-    return { props: { album: {} } }
+    return { props: { featuredPlaylists: {} } }
   }
 }
 

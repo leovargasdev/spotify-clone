@@ -21,10 +21,10 @@
     font-weight: 500;
     color: var(--secondary-light);
     text-transform: uppercase;
-    
-    &:hover {
-      text-decoration: underline;
-    }
+  }
+
+  a:hover, h2:hover {
+    text-decoration: underline;
   }
 }
 
