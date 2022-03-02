@@ -1,14 +1,14 @@
 import Link from 'next/link'
 
-import { Album } from 'types/album'
+import { Category } from 'types/category'
 import { PlayButton } from 'components/PlayButton'
 
 import styles from './styles.module.scss'
 
-export const SectionAlbum = (album: Album) => (
+export const SectionCategory = (category: Category) => (
   <section>
-    <div className={styles['album--name']}>
-      <h2>{album.name}</h2>
+    <div className={styles['category--name']}>
+      <h2>{category.name}</h2>
 
       <Link href="/">
         <a>ver tudo</a>
@@ -16,7 +16,7 @@ export const SectionAlbum = (album: Album) => (
     </div>
 
     <div className={styles.playlists}>
-      {album.playlists.map(playlist => (
+      {category.playlists.map(playlist => (
         <div
           key={playlist.name}
           className={`${styles.playlist} ${styles['playlist-hover']}`}

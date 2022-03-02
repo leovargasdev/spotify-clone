@@ -3,30 +3,22 @@ import { GetStaticProps } from 'next'
 import { useEffect, useState } from 'react'
 
 import { PlayButton } from 'components/PlayButton'
-import { SectionAlbum } from 'components/SectionAlbum'
+import { SectionCategory } from 'components/SectionCategory'
 import { MOCK_PLAYLISTS, MOCK_CARDS, MOCK_SECTIONS } from 'mock'
 
-import { api } from 'service/api'
 import { spotify } from 'service/spotify'
 
 import styles from 'styles/home.module.scss'
+import getCategoriesHomePage from 'utils/getCategoriesHomePage'
 
-function HomePage({ featuredPlaylists }) {
-  const [albuns, setAlbuns] = useState([])
+function HomePage({ featuredPlaylists, categories }) {
   const [welcomeMessage, setWelcomeMessage] = useState<string>('')
 
   useEffect(() => {
-    async function loadData() {
-      const response = await api.get('home-data')
-      setAlbuns(response.data)
-    }
-
     const currentHour = new Date().getHours()
     if (currentHour < 12) setWelcomeMessage('Bom dia')
     else if (currentHour < 18) setWelcomeMessage('Boa tarde')
     else setWelcomeMessage('Boa noite')
-
-    loadData()
   }, [])
 
   return (
@@ -67,10 +59,10 @@ function HomePage({ featuredPlaylists }) {
         </div>
       </section>
 
-      <SectionAlbum {...featuredPlaylists} />
+      <SectionCategory {...featuredPlaylists} />
 
-      {albuns.map(album => (
-        <SectionAlbum {...album} key={album.name} />
+      {categories.map(category => (
+        <SectionCategory {...category} key={category.name} />
       ))}
     </div>
   )
@@ -93,10 +85,12 @@ export const getStaticProps: GetStaticProps = async () => {
       }))
     }
 
-    return { props: { featuredPlaylists } }
+    const categories = await getCategoriesHomePage.execute()
+
+    return { props: { featuredPlaylists, categories } }
   } catch (e) {
     console.log('[ERROR] HomePage:', e)
-    return { props: { featuredPlaylists: {} } }
+    return { props: { featuredPlaylists: {}, categories: [] } }
   }
 }
 

@@ -1,6 +1,6 @@
 import { Playlist } from './playlist'
 
-export interface Album {
+export interface Category {
   name: string
   playlists: Playlist[]
 }
