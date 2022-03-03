@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
+import { Card } from 'components/Card'
 import { Category } from 'types/category'
-import { PlayButton } from 'components/PlayButton'
 
 import styles from './styles.module.scss'
 
@@ -15,21 +15,9 @@ export const SectionCategory = (category: Category) => (
       </Link>
     </div>
 
-    <div className={styles.playlists}>
+    <div className={`${styles.playlists} abacaxi`}>
       {category.playlists.map(playlist => (
-        <div
-          key={playlist.name}
-          className={`${styles.playlist} ${styles['playlist-hover']}`}
-        >
-          <div className={styles['playlist--image']}>
-            <img src={playlist.image} alt="Capa da Playlist" />
-            <PlayButton />
-          </div>
-          <div className={styles['playlist--content']}>
-            <strong className="limit-text one">{playlist.name}</strong>
-            <p className="limit-text two">{playlist.description}</p>
-          </div>
-        </div>
+        <Card {...playlist} key={playlist.id} />
       ))}
     </div>
   </section>
