@@ -81,7 +81,7 @@ export const getStaticProps: GetStaticProps = async () => {
         name: item.name,
         href: item.href,
         description: item.description,
-        image: item.images[0].url
+        images: item.images
       }))
     }
 

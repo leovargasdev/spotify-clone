@@ -16,7 +16,7 @@ const getPlaylists = playlists =>
     name: item.name,
     href: item.href,
     description: item.description,
-    image: item.images[0].url
+    images: item.images
   }))
 
 const getCategory = async category => {
