@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  align-items: flex-end;
+  column-gap: 24px;
+}
+
+.image {
+  width: 232px;
+  height: 232px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.content {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 8px;
+
+  small {
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: 6rem;
+    line-height: 6rem;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1rem;
+
+    a {
+      font-weight: 700;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    span {
+      font-weight: 400;
+      color: rgba(255,255,255,.7);
+    }
+
+  }
+}
