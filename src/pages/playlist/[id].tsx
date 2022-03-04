@@ -5,6 +5,8 @@ import { spotify } from 'service/spotify'
 import { PlayButton } from 'components/PlayButton'
 import { PlaylistHeader } from 'components/Playlist/Header'
 
+import { PlaylistTracks } from 'components/Playlist/Tracks'
+
 const PlaylistPage: NextPage<Playlist> = playlist => {
   return (
     <div>
@@ -13,11 +15,7 @@ const PlaylistPage: NextPage<Playlist> = playlist => {
         <PlayButton />
         ...
       </div>
-      <ul>
-        {playlist.tracks.items.map(({ track }) => (
-          <li key={track.id}>{track.name}</li>
-        ))}
-      </ul>
+      <PlaylistTracks tracks={playlist.tracks.items} />
     </div>
   )
 }

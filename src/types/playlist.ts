@@ -1,30 +1,9 @@
-import { Artist } from './artist'
+import { Track } from './track'
 
-interface AlbumImage {
+export interface AlbumImage {
   height: number
   url: string
   width: number
-}
-
-export interface PlalistItem {
-  added_at: string
-  track: {
-    album: {
-      external_urls: {
-        spotify: string
-      }
-      id: string
-      name: string
-      images: AlbumImage[]
-    }
-    artists: Artist[]
-    external_urls: {
-      spotify: string
-    }
-    id: string
-    name: string
-    preview_url: string
-  }
 }
 export interface Playlist {
   id: string
@@ -41,6 +20,6 @@ export interface Playlist {
   tracks: {
     href: string
     total: number
-    items: PlalistItem[]
+    items: Track[]
   }
 }

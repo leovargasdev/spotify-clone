@@ -39,9 +39,18 @@
       opacity: var(--opacity);
       z-index: -1;
       width: calc(100vw - 233px);
+    }
+
+    &.home::before {
       height: 332px;
       background-color: rgb(80, 40, 240);
       background-image: linear-gradient(rgba(0,0,0,.6) 0,#121212 100%),var(--background-noise);
+    }
+
+    &.playlist::before {
+      height: 340px;
+      background-color: rgb(64, 56, 56);
+      background-image: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%), var(--background-noise);
     }
 
   }

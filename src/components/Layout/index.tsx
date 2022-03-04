@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 import { Header } from 'components/Header'
 import { NavBar } from 'components/Navbar'
@@ -12,6 +13,9 @@ type LayoutProps = {
 const MAX_SCROLL = 88
 
 export const Layout = ({ children }: LayoutProps) => {
+  const { pathname } = useRouter()
+  const isHome = pathname === '/'
+
   useEffect(() => {
     const handleEventScroll = () => {
       const mainContent = document.getElementById('main-content')
@@ -23,7 +27,11 @@ export const Layout = ({ children }: LayoutProps) => {
       let opacity = Math.ceil((currentScroll * 100) / MAX_SCROLL)
       opacity = Math.min(100, opacity) / 100
 
-      mainHeader.style.backgroundColor = `rgba(32, 16, 96, ${opacity})`
+      if (isHome) {
+        mainHeader.style.backgroundColor = `rgba(32, 16, 96, ${opacity})`
+      } else {
+        mainHeader.style.backgroundColor = `rgba(64, 56, 56, ${opacity})`
+      }
 
       mainContent.style.setProperty('--opacity', String(1 - opacity))
     }
@@ -37,7 +45,10 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <div className={styles.container}>
       <NavBar />
-      <main className="scroll" id="main-content">
+      <main
+        id="main-content"
+        className={'scroll '.concat(isHome ? styles.home : styles.playlist)}
+      >
         <Header />
         <div className={styles.content}>{children}</div>
       </main>

@@ -1,6 +1,7 @@
 import { Playlist } from 'types/playlist'
 
 import styles from './styles.module.scss'
+
 export const PlaylistHeader = (playlist: Playlist) => (
   <div className={styles.container}>
     <div className={styles.image}>

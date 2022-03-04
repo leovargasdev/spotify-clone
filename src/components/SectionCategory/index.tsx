@@ -15,7 +15,7 @@ export const SectionCategory = (category: Category) => (
       </Link>
     </div>
 
-    <div className={`${styles.playlists} abacaxi`}>
+    <div className={styles.playlists}>
       {category.playlists.map(playlist => (
         <Card {...playlist} key={playlist.id} />
       ))}

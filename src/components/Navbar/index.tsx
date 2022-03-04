@@ -30,6 +30,8 @@ const NAVIGATIONS: Navigation[] = [
 export const NavBar = () => {
   const [playlists, setPlaylists] = useState<Playlist[]>([])
 
+  console.log(playlists)
+
   useEffect(() => {
     async function loadPlaylists() {
       const response = await api.get('playlists', {
@@ -75,7 +77,9 @@ export const NavBar = () => {
         <ul>
           {playlists.map(playlist => (
             <li key={playlist.id} className="limit-text one">
-              {playlist.name}
+              <Link href={`/playlist/${playlist.id}`}>
+                <a>{playlist.name}</a>
+              </Link>
             </li>
           ))}
         </ul>
