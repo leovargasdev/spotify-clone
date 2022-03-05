@@ -12,8 +12,7 @@ export const PlaylistHeader = (playlist: Playlist) => (
       <h1>{playlist.name}</h1>
       <p>
         <a href="/">{playlist.owner.display_name}</a> • {playlist.tracks.total}{' '}
-        músicas,
-        <span>5h 1min</span>
+        músicas, <span>5h 1min</span>
       </p>
     </div>
   </div>
