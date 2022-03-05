@@ -1,4 +1,5 @@
 import IconBullets from './icons/bullets.svg'
+import IconClock from './icons/clock.svg'
 import IconConnectDevice from './icons/connect-device.svg'
 import IconEpisode from './icons/episode.svg'
 import IconExpand from './icons/expand.svg'
@@ -19,6 +20,7 @@ import IconTray from './icons/tray.svg'
 
 export {
   IconBullets,
+  IconClock,
   IconConnectDevice,
   IconEpisode,
   IconExpand,
