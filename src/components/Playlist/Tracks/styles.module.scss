@@ -5,20 +5,36 @@
 }
 
 .track {
-  display: flex;
+  display: grid;
+  grid-template-columns: 18px 3fr 2fr 2fr 20px 40px 20px;
   align-items: center;
   column-gap: 16px;
 
   height: 56px;
   padding: 0 16px;
-  // background: blue;
+  border-radius: 4px;
 
   color: rgba(255, 255, 255, 0.7);
 
-  span {
-    font-size: 1rem;
-    line-height: 1.5rem;
+  .track--play-and-number {
+    display: flex;
+    justify-content: center;
+    
+    span {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    button {
+      display: none;
+      visibility: hidden;
+
+      svg {
+        width: 1rem;
+      }
+    }
   }
+
 
   a, time {
     font-size: 0.875rem;
@@ -26,29 +42,53 @@
     font-weight: 400;
   }
 
-  .track--album-name {
-    width: 100%;
-    max-width: 300px;
+  .track--duration {
+    text-align: right;
   }
 
-  .track--added-at {
-    width: 100%;
-    max-width: 200px;
-    // background: crimson;
-  }
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: transparent;
+    
+    svg path {
+      fill: var(--secondary);
+    }
 
-  svg path {
-    fill: var(--secondary);
+    &:hover svg path {
+      fill: var(--primary);
+    }
+
+    &.like svg path, &.like:hover svg path {
+      fill: var(--green);
+    }
   }
 
   a:hover {
     cursor: pointer;
     text-decoration: underline;
   }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+
+    .track--play-and-number {
+      span {
+        display: none;
+        visibility: hidden;
+      }
+  
+      button {
+        display: flex;
+        visibility: visible;
+      }
+    }
+  }
 }
 
 .track--info {
-  flex: 1;
+  // flex: 1;
   // background: green;
 
   display: grid;

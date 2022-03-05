@@ -1,3 +1,4 @@
+import IconBullets from './icons/bullets.svg'
 import IconConnectDevice from './icons/connect-device.svg'
 import IconEpisode from './icons/episode.svg'
 import IconExpand from './icons/expand.svg'
@@ -8,6 +9,7 @@ import IconLibrary from './icons/library.svg'
 import IconList from './icons/list.svg'
 import IconLoop from './icons/loop.svg'
 import IconMicrophone from './icons/microphone.svg'
+import IconPlay from './icons/play.svg'
 import IconRepeat from './icons/repeat.svg'
 import IconSearch from './icons/search.svg'
 import IconSkipEnd from './icons/skipEnd.svg'
@@ -16,6 +18,7 @@ import IconSound from './icons/sound.svg'
 import IconTray from './icons/tray.svg'
 
 export {
+  IconBullets,
   IconConnectDevice,
   IconEpisode,
   IconExpand,
@@ -26,6 +29,7 @@ export {
   IconList,
   IconLoop,
   IconMicrophone,
+  IconPlay,
   IconRepeat,
   IconSearch,
   IconSkipEnd,
