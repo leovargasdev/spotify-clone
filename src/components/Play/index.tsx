@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { BsPlayCircleFill, BsPauseCircleFill } from 'react-icons/bs'
 
+import { useTrack } from 'hooks/useTrack'
 import styles from './styles.module.scss'
 import {
   IconConnectDevice,
@@ -20,6 +21,7 @@ import {
 const TIME_SOUND_MOCK = 60 * 3 + 28
 
 export const Play = () => {
+  const { track } = useTrack()
   const [isLike, setIsLike] = useState<boolean>(false)
 
   const [active, setActive] = useState<boolean>(false)
@@ -48,16 +50,23 @@ export const Play = () => {
   return (
     <footer className={styles.container}>
       <div className={styles.music}>
-        <div className={styles['sound--image']}>
-          <img
-            src="https://i.scdn.co/image/ab67616d00004851aa2d1f1ecc9aa8f82fd56f7c"
-            alt=""
-          />
-        </div>
-        <div className={styles['sound--name']}>
-          <strong>Dont Stop Believin</strong>
-          <p>Journey</p>
-        </div>
+        {track?.name && (
+          <>
+            <div className={styles['sound--image']}>
+              <img src={track.album.images[0].url} alt="Image of track" />
+            </div>
+            <div className={styles['sound--name']}>
+              <strong>{track.name}</strong>
+              <p>
+                {track.artists.map(
+                  (artist, index) =>
+                    artist.name +
+                    (track.artists.length - 1 !== index ? ', ' : '')
+                )}
+              </p>
+            </div>
+          </>
+        )}
         <button
           type="button"
           className={isLike ? styles.like : ''}

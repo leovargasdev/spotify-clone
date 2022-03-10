@@ -1,3 +1,4 @@
+import { useTrack } from 'hooks/useTrack'
 import { useEffect, useState } from 'react'
 import {
   IconBullets,
@@ -6,18 +7,20 @@ import {
   IconHeartSolid,
   IconPlay
 } from 'static'
-import { Track } from 'types/track'
+import { PlaylistTrack } from 'types/track'
 import { convertMillisecondsToMinutes } from 'utils/convertMillisecondsToMinutes'
 import { formattedDate } from 'utils/formattedDate'
 import styles from './styles.module.scss'
 
 interface PlaylistTracksProps {
-  tracks: Track[]
+  tracks: PlaylistTrack[]
 }
 
 export const PlaylistTracks = ({ tracks }: PlaylistTracksProps) => {
   const loadWindow = typeof window !== 'undefined'
   const [tracksLike, setTracksLike] = useState<string[]>([])
+
+  const { playTrack } = useTrack()
 
   useEffect(() => {
     if (loadWindow) {
@@ -64,14 +67,15 @@ export const PlaylistTracks = ({ tracks }: PlaylistTracksProps) => {
           <IconClock />
         </span>
       </div>
+
       <hr className={styles.divider} />
+
       <ul className={styles.traks}>
         {tracks.map(({ added_at, track }, index) => (
           <li key={track.id} className={styles.track}>
             <div className={styles['track--play-and-number']}>
               <span>{index + 1}</span>
-
-              <button type="button">
+              <button type="button" onClick={() => playTrack(track)}>
                 <IconPlay />
               </button>
             </div>
@@ -79,7 +83,18 @@ export const PlaylistTracks = ({ tracks }: PlaylistTracksProps) => {
               <img src={track.album.images[0].url} alt="" />
               <h3>{track.name}</h3>
               <h4>
-                <a href="">{track.artists[0].name}</a>
+                {track.artists.map((artist, index) => (
+                  <>
+                    <a
+                      href={artist.external_urls.spotify}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {artist.name}
+                    </a>
+                    {index !== track.artists.length - 1 ? ', ' : ''}
+                  </>
+                ))}
               </h4>
             </div>
             <a className={styles['track--album-name']} href="">
