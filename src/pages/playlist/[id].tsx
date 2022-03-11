@@ -27,9 +27,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const id = params.id.toString()
-    console.log(id)
     const response = await spotify.get(`playlists/${id}`)
-    console.log(response.data)
 
     return { props: response.data }
   } catch (err) {

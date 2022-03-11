@@ -8,3 +8,9 @@ export const convertMillisecondsToMinutes = (milliseconds: number): string => {
 
   return `${minutes}:${seconds}`
 }
+
+export const convertToSeconds = (milliseconds: number): number => {
+  const seconds = Math.floor(milliseconds * SECOND_IN_MINUTES)
+  console.log(seconds)
+  return seconds
+}

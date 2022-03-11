@@ -21,8 +21,6 @@ export const Layout = ({ children }: LayoutProps) => {
       const mainContent = document.getElementById('main-content')
       const mainHeader = document.getElementById('main-header')
 
-      console.log(mainHeader.clientHeight)
-
       const currentScroll = mainContent.scrollTop
       let opacity = Math.ceil((currentScroll * 100) / MAX_SCROLL)
       opacity = Math.min(100, opacity) / 100

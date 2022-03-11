@@ -1,7 +1,7 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  column-gap: 16px;
   padding: 16px;
   
   background: var(--terciary);
@@ -34,9 +34,11 @@
 }
 
 .music {
+  flex: 1;
   display: flex;
   column-gap: 0;
   align-items: center;
+
 
   .sound--image {
     width: 56px;
@@ -139,7 +141,9 @@
 }
 
 .controll-right {
+  flex: 1;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   column-gap: 0;
 

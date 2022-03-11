@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { BsPlayCircleFill, BsPauseCircleFill } from 'react-icons/bs'
 
 import { useTrack } from 'hooks/useTrack'
-import styles from './styles.module.scss'
+import { useTracksLike } from 'hooks/useTracksLike'
+
 import {
   IconConnectDevice,
   IconExpand,
@@ -17,12 +18,15 @@ import {
   IconSound,
   IconTray
 } from 'static'
+import styles from './styles.module.scss'
 
 const TIME_SOUND_MOCK = 60 * 3 + 28
 
 export const Play = () => {
   const { track } = useTrack()
-  const [isLike, setIsLike] = useState<boolean>(false)
+  const { hasLikeTrack, handleLikeTrack, tracksLike } = useTracksLike()
+
+  const isLike = useMemo(() => hasLikeTrack(track?.id), [track, tracksLike])
 
   const [active, setActive] = useState<boolean>(false)
   const [timeline, setTimeLine] = useState<number>(0)
@@ -70,7 +74,7 @@ export const Play = () => {
         <button
           type="button"
           className={isLike ? styles.like : ''}
-          onClick={() => setIsLike(state => !state)}
+          onClick={() => handleLikeTrack(track.id)}
         >
           {isLike ? <IconHeartSolid /> : <IconHeart />}
         </button>

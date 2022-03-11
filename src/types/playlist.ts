@@ -1,4 +1,4 @@
-import { Track } from './track'
+import { PlaylistTrack } from './track'
 
 export interface AlbumImage {
   height: number
@@ -20,6 +20,6 @@ export interface Playlist {
   tracks: {
     href: string
     total: number
-    items: Track[]
+    items: PlaylistTrack[]
   }
 }

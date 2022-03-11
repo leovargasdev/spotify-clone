@@ -30,8 +30,6 @@ const NAVIGATIONS: Navigation[] = [
 export const NavBar = () => {
   const [playlists, setPlaylists] = useState<Playlist[]>([])
 
-  console.log(playlists)
-
   useEffect(() => {
     async function loadPlaylists() {
       const response = await api.get('playlists', {

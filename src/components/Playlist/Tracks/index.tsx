@@ -1,5 +1,4 @@
 import { useTrack } from 'hooks/useTrack'
-import { useEffect, useState } from 'react'
 import {
   IconBullets,
   IconClock,
@@ -7,54 +6,21 @@ import {
   IconHeartSolid,
   IconPlay
 } from 'static'
+
 import { PlaylistTrack } from 'types/track'
-import { convertMillisecondsToMinutes } from 'utils/convertMillisecondsToMinutes'
 import { formattedDate } from 'utils/formattedDate'
+import { convertMillisecondsToMinutes } from 'utils/convertTimes'
+
 import styles from './styles.module.scss'
+import { useTracksLike } from 'hooks/useTracksLike'
 
 interface PlaylistTracksProps {
   tracks: PlaylistTrack[]
 }
 
 export const PlaylistTracks = ({ tracks }: PlaylistTracksProps) => {
-  const loadWindow = typeof window !== 'undefined'
-  const [tracksLike, setTracksLike] = useState<string[]>([])
-
   const { playTrack } = useTrack()
-
-  useEffect(() => {
-    if (loadWindow) {
-      const tracksLikeLocal = JSON.parse(localStorage.getItem('tracks-like'))
-      setTracksLike(tracksLikeLocal || [])
-    }
-  }, [loadWindow])
-
-  useEffect(() => {
-    const setLocalStorage = () =>
-      localStorage.setItem('tracks-like', JSON.stringify(tracksLike))
-
-    window.addEventListener('unload', setLocalStorage)
-
-    return () => {
-      window.removeEventListener('unload', setLocalStorage)
-    }
-  })
-
-  const handleTrackLike = trackId => {
-    const isLike = tracksLike.includes(trackId)
-
-    setTracksLike(state => {
-      let newState = []
-
-      if (isLike) {
-        newState = state.filter(itemTrackId => itemTrackId !== trackId)
-      } else {
-        newState = [...state, trackId]
-      }
-
-      return newState
-    })
-  }
+  const { tracksLike, handleLikeTrack } = useTracksLike()
 
   return (
     <div>
@@ -106,7 +72,7 @@ export const PlaylistTracks = ({ tracks }: PlaylistTracksProps) => {
 
             <button
               type="button"
-              onClick={() => handleTrackLike(track.id)}
+              onClick={() => handleLikeTrack(track.id)}
               className={tracksLike.includes(track.id) ? styles.like : ''}
             >
               {tracksLike.includes(track.id) ? (
