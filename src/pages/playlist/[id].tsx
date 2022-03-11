@@ -15,7 +15,9 @@ const PlaylistPage: NextPage<Playlist> = playlist => {
         <PlayButton />
         ...
       </div>
-      <PlaylistTracks tracks={playlist.tracks.items} />
+      {playlist.tracks?.items && (
+        <PlaylistTracks tracks={playlist.tracks.items} />
+      )}
     </div>
   )
 }
